@@ -9,7 +9,7 @@ const Cart = () => {
     setCart((prevCart) =>
       prevCart.map((item) =>
         item.id === id
-          ? { ...item, count: item.count + delta >= 0 ? item.count + delta : 0 } // Asegura que el count no sea negativo
+          ? { ...item, count: item.count + delta >= 0 ? item.count + delta : 0 }
           : item
       )
     );
