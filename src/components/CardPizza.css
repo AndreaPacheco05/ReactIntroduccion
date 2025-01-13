@@ -1,4 +1,4 @@
-.card {
+card {
   margin: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -6,38 +6,14 @@
 }
 
 .card-img-top {
-  width: 100%;
-  border-radius: 8px;
   border-bottom: 1px solid #ddd;
 }
 
 .card-body {
-  padding: 16px;
   text-align: center;
 }
 
-.card-name {
-  font-size: 1.5em;
-  margin: 10px 0;
-}
 
-.card-description {
+h6{
   color: rgba(73, 73, 73, 0.57);
-  font-size: 1em;
-  margin-bottom: 10px;
-}
-
-.card-ingredients {
-  list-style-type: none;
-  padding: 0;
-}
-
-.card-ingredient-item {
-  font-size: 1em;
-  margin: 5px 0;
-}
-
-.card-price {
-  font-weight: bold;
-  margin-top: 10px;
 }

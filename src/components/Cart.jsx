@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { pizzaCart } from "../pizzas"; 
-import "./cart.css"; // Asegúrate de importar el archivo CSS
+import "./cart.css"; 
 
 const Cart = () => {
   const [cart, setCart] = useState(pizzaCart);
