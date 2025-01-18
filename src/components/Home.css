@@ -1,0 +1,17 @@
+.home {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    list-style: none;
+    padding: 0;
+    justify-content: center; 
+    width: 60%; 
+    margin: 0; 
+}
+  
