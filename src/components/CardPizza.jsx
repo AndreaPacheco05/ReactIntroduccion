@@ -1,5 +1,5 @@
 import React from 'react';
-import './CardPizza.css';
+import '../assets/css/CardPizza.css';
 
 const CardPizza = ({ img, name, desc, ingredients, price }) => {
   return (

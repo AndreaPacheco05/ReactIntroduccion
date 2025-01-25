@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
-import './Pizza.css';  
+import '../assets/css/Pizza.css';
 
 const Pizza = () => {
   const [pizza, setPizza] = useState(null);
+  const [error, setError] = useState(null);
   const URL = "http://localhost:5000/api/pizzas/p001";
 
   useEffect(() => {
     const fetchPizza = async () => {
+      try {
         const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         setPizza(data);
         console.log(data);
+      } catch (err) {
+        setError(err.message);
+        console.error("Error fetching pizza:", err);
+      }
     };
 
     fetchPizza();
   }, []);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   if (!pizza) {
     return <p>Loading...</p>;
@@ -26,7 +39,7 @@ const Pizza = () => {
       <h1>{pizza.name}</h1>
       <p>{pizza.desc}</p>
       <ul>
-        {pizza.ingredients.map((ingredient) => (
+        {pizza.ingredients?.map((ingredient) => (
           <li key={ingredient}>{ingredient}</li>
         ))}
       </ul>

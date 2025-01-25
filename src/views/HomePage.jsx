@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header';
-import { pizzas } from "../pizzas"
-import CardPizza from './CardPizza';
-import './Home.css';
+import CardPizza from '../components/CardPizza';
+import '../assets/css/Home.css';
 
-const Home = () => {
+const HomePage = () => {
   const [pizzas, setPizzas] = useState([]); 
   const URL = "http://localhost:5000/api/pizzas"; 
 
@@ -32,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { pizzaCart } from "../pizzas"; 
-import "./cart.css"; 
+import "../assets/css/Cart.css"; 
 
-const Cart = () => {
+const CartPage = () => {
   const [cart, setCart] = useState(pizzaCart);
 
   const updateQuantity = (id, delta) => {
@@ -56,4 +56,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

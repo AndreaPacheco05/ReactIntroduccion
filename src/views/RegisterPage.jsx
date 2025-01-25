@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import './Login.css';
+import '../assets/css/Register.css';
 
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       alert('All fields are required.');
       return;
     }
@@ -17,11 +18,16 @@ const LoginPage = () => {
       alert('Password must be at least 6 characters.');
       return;
     }
+    if (password !== confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
     alert('Authentication successful!');
-  };  
+  };
+  
 
   return (
-    <div className="container mt-4">
+    <div className="container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -46,6 +52,17 @@ const LoginPage = () => {
             placeholder="Enter your password"
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="confirmPassword" className="form-label">Repeat Password</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            className="form-control" 
+            value={confirmPassword} 
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Enter your password again" 
+          />
+        </div>
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
       {message && <div className="mt-3 alert alert-info">{message}</div>}
@@ -53,4 +70,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
