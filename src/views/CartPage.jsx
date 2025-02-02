@@ -1,21 +1,9 @@
-import React, { useState } from "react";
-import { pizzaCart } from "../pizzas"; 
+import React from "react";
+import { useCart } from "../context/CartContext";
 import "../assets/css/Cart.css"; 
 
 const CartPage = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  const updateQuantity = (id, delta) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id
-          ? { ...item, count: item.count + delta >= 0 ? item.count + delta : 0 }
-          : item
-      )
-    );
-  };
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+  const { cart, updateQuantity, total } = useCart();
 
   return (
     <div className="cart">
@@ -24,36 +12,34 @@ const CartPage = () => {
         {cart.map(({ id, img, name, price, count }) => (
           <div key={id} className="item">
             <img src={img} alt={name} className="item-img" />
+
             <div className="item-info">
               <span className="item-name">{name}</span>
               <span className="item-price">${price}</span>
             </div>
+
             <div className="item-actions">
-              <button
-                onClick={() => updateQuantity(id, -1)}
-                className="menos-button"
-              >
-                -
+              <button onClick={() => updateQuantity(id, -1)} className="menos-button"> 
+                - 
               </button>
               <span className="item-count">{count}</span>
-              <button
-                onClick={() => updateQuantity(id, 1)}
-                className="mas-button"
-              >
-                +
+              <button onClick={() => updateQuantity(id, 1)}className="mas-button"> 
+                + 
               </button>
             </div>
+
           </div>
         ))}
       </div>
       <div className="total">
         Total: ${total.toLocaleString("es-CL")}
       </div>
-      <button className="pay-button">
-        Pagar
-      </button>
+      <button className="pay-button"> Pagar </button>
     </div>
   );
 };
 
 export default CartPage;
+   
+    
+

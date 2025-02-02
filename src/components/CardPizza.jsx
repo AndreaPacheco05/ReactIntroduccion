@@ -1,7 +1,9 @@
 import React from 'react';
+import { useCart } from "../context/CartContext"; 
 import '../assets/css/CardPizza.css';
 
-const CardPizza = ({ img, name, desc, ingredients, price }) => {
+const CardPizza = ({ img, name, desc, ingredients, price, id }) => {
+  const { addToCart } = useCart();
   return (
     <div className="card">
       <img src={img} alt={name} />
@@ -15,6 +17,9 @@ const CardPizza = ({ img, name, desc, ingredients, price }) => {
       <p>
         <strong>Precio:</strong> ${price.toLocaleString('es-CL')}
       </p>
+      <button onClick={() => addToCart({ id, name, price, img })} className="add-button">
+        Añadir al carrito
+      </button>
     </div>
   );
 };
