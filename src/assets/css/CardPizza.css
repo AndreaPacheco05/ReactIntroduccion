@@ -55,3 +55,8 @@ li{
 strong {
   color: #000;
 }
+
+a{
+  list-style: none;
+  text-decoration: none;
+}

@@ -1,17 +1,21 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { CartProvider } from "./context/CartContext";
+import { UserProvider } from './context/UserContext';
 import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import App from './App.jsx'
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </UserProvider>
     </BrowserRouter>
   </StrictMode>
 );
+
 

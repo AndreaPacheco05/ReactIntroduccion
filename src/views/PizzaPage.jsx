@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
-import '../assets/css/Pizza.css';
+import { useParams } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import "../assets/css/Pizza.css"; 
 
-const Pizza = () => {
+const PizzaPage = () => {
+  const { id } = useParams();
   const [pizza, setPizza] = useState(null);
   const [error, setError] = useState(null);
-  const URL = "http://localhost:5000/api/pizzas/p001";
+  const { addToCart } = useCart();
+  const URL = `http://localhost:5000/api/pizzas/${id}`; 
 
   useEffect(() => {
     const fetchPizza = async () => {
@@ -23,14 +27,14 @@ const Pizza = () => {
     };
 
     fetchPizza();
-  }, []);
+  }, [id]);
 
   if (error) {
     return <p>Error: {error}</p>;
   }
 
   if (!pizza) {
-    return <p>Loading...</p>;
+    return <p>Cargando...</p>;
   }
 
   return (
@@ -43,12 +47,12 @@ const Pizza = () => {
           <li key={ingredient}>{ingredient}</li>
         ))}
       </ul>
-      <h3>Precio: ${pizza.price.toLocaleString('es-CL')}</h3>
-      <button>
+      <h3>Precio: ${pizza.price.toLocaleString("es-CL")}</h3>
+      <button onClick={() => addToCart(pizza)}>
         Añadir al carrito
       </button>
     </div>
   );
 };
 
-export default Pizza;
+export default PizzaPage;

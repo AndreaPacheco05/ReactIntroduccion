@@ -1,9 +1,11 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
+import { useUser } from "../context/UserContext";
 import "../assets/css/Cart.css"; 
 
 const CartPage = () => {
   const { cart, updateQuantity, total } = useCart();
+  const { token } = useUser(); 
 
   return (
     <div className="cart">
@@ -15,7 +17,7 @@ const CartPage = () => {
 
             <div className="item-info">
               <span className="item-name">{name}</span>
-              <span className="item-price">${price}</span>
+              <span className="item-price">${price.toLocaleString("es-CL")}</span>
             </div>
 
             <div className="item-actions">
@@ -34,12 +36,11 @@ const CartPage = () => {
       <div className="total">
         Total: ${total.toLocaleString("es-CL")}
       </div>
-      <button className="pay-button"> Pagar </button>
+      <button className="pay-button" disabled={!token}>
+        {token ? "Pagar" : "Inicia sesión para pagar"}
+      </button>
     </div>
   );
 };
 
 export default CartPage;
-   
-    
-
